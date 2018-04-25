@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.alpersimsek.myapp.Fragments.EventFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/eventConstraint">
+
+
+        <EditText
+            android:id="@+id/eventFragmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@id/dateText"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            android:text="@string/addevent" />
+
+        <EditText
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            tools:layout_editor_absoluteX="51dp"
+            tools:layout_editor_absoluteY="40dp"
+            app:layout_constraintBottom_toTopOf="@id/eventFragmentButton"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            />
+
+        <Button
+            android:id="@+id/eventFragmentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/eventsList2"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            android:text="@string/ADD" />
+
+
+        <ListView
+            android:id="@+id/eventsList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/eventFragmentButton"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

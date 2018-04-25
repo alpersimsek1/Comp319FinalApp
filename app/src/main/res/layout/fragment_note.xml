@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragmentNoteCons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.alpersimsek.myapp.Fragments.NoteFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <Button
+            android:id="@+id/fragmentNoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="320dp"
+            android:text="@string/ADD"
+            app:layout_constraintTop_toBottomOf="@id/fragmentNoteList"
+            app:layout_constraintLeft_toLeftOf="@+id/fragmentNoteCons" />
+
+        <ListView
+            android:id="@+id/fragmentNoteList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="@+id/fragmentNoteCons"
+            app:layout_constraintTop_toBottomOf="@id/fragmentNoteButton" />
+
+        <EditText
+            android:id="@+id/fragmentNoteText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintEnd_toStartOf="@+id/fragmentNoteButton"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

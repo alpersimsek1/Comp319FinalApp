@@ -1,0 +1,67 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.alpersimsek.myapp.Fragments.BudgetFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/budgetConstraint">
+
+
+        <EditText
+            android:id="@+id/newBudgetText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/amount"
+            app:layout_constraintBottom_toTopOf="@id/locationViewBudget"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+
+        <TextView
+            android:id="@+id/locationViewBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            app:layout_constraintBottom_toTopOf="@id/newBudgetButton"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
+            />
+
+        <Button
+            android:id="@+id/newBudgetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ADD"
+            app:layout_constraintBottom_toTopOf="@id/budgetText"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+
+        <TextView
+            android:id="@+id/budgetText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/budgetText"
+            app:layout_constraintBottom_toTopOf="@id/budgetList2"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
+
+        <ListView
+            android:id="@+id/budgetList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/budgetText"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

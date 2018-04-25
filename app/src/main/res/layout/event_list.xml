@@ -1,0 +1,36 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/event_list_const"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/eventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/listTextColor"
+        android:textSize="15sp"
+        android:gravity="end"
+        android:textAlignment="gravity"
+        app:layout_constraintLeft_toRightOf="@id/eventTitle"
+        app:layout_constraintLeft_toLeftOf="@+id/event_list_const" />
+
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/listTitleColor"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/event_list_const"
+        />
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alpersimsek.myapp.RunActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/runConstraint">
+
+
+        <EditText
+            android:id="@+id/newRunFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/from"
+            app:layout_constraintBottom_toTopOf="@id/newRunTo"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+        <EditText
+            android:id="@+id/newRunTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/to"
+            app:layout_constraintBottom_toTopOf="@id/newRunDate"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+        <EditText
+            android:id="@+id/newRunDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:text="@string/date"
+            app:layout_constraintBottom_toTopOf="@id/newRunLen"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+
+        <EditText
+            android:id="@+id/newRunLen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/length"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ADD"
+            app:layout_constraintBottom_toTopOf="@id/runText"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+
+        <TextView
+            android:id="@+id/runText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/runText"
+            app:layout_constraintBottom_toTopOf="@id/runList2"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint" />
+
+        <ListView
+            android:id="@+id/runList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/runText"
+            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

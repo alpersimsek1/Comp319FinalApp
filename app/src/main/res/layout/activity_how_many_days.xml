@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alpersimsek.myapp.HowManyDaysActivity">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/eventConstraint">
+
+
+        <EditText
+            android:id="@+id/eventEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@id/dateText"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            android:text="@string/addevent" />
+
+        <EditText
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            tools:layout_editor_absoluteX="51dp"
+            tools:layout_editor_absoluteY="40dp"
+            app:layout_constraintBottom_toTopOf="@id/eventbutton"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            />
+
+        <Button
+            android:id="@+id/eventbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/eventText"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            android:onClick="eventToDB"
+            android:text="@string/ADD" />
+
+        <TextView
+            android:id="@+id/eventText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/eventText"
+            app:layout_constraintBottom_toTopOf="@id/eventsList2"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint" />
+
+        <ListView
+            android:id="@+id/eventsList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/eventText"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

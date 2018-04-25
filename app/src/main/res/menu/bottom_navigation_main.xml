@@ -1,0 +1,30 @@
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_event"
+        android:enabled="true"
+        android:icon="@mipmap/icons8_calendar_24"
+        android:title="@string/eventText"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_budget"
+        android:enabled="true"
+        android:icon="@mipmap/icons8_cheap_2_24"
+        android:title="@string/budgetText"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_note"
+        android:enabled="true"
+
+        android:icon="@mipmap/icons8_note_24"
+        android:title="@string/notesText"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_run"
+        android:enabled="true"
+        android:icon="@mipmap/icons8_running_4"
+        android:title="@string/runText"
+        app:showAsAction="ifRoom" />
+</menu>

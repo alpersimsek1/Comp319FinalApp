@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Not-Etkinlik-Butce</string>
+    <string name="eventText">Etkinlikler</string>
+    <string name="notesText">Notlar</string>
+    <string name="budgetText">Butce</string>
+    <string name="runText">Kosular</string>
+    <string name="title_activity_login">Giris yap</string>
+
+    <!-- Strings related to login -->
+
+
+    <string name="signIn">Giris</string>
+    <string name="signOut">Cikis</string>
+    <string name="register">Uye ol</string>
+    <string name="verifyEmail">Etkinlestir</string>
+
+    <string name="addnote">Yeni not ekle</string>
+    <string name="addevent">Yeni etkinlik ekle</string>
+    <string name="addbudget">Yeni harcama</string>
+    <string name="addrun">Yeni Kosu</string>
+
+
+    <string name="ADD">Ekle</string>
+
+    <string name="from">nereden</string>
+    <string name="to">nereye</string>
+    <string name="date">tarih</string>
+    <string name="length">mesage</string>
+
+    <string name="amount">Harcama Miktari</string>
+
+
+    </resources>

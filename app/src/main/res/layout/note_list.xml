@@ -1,0 +1,32 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/note_list_const"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/custom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/listTextColor"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/custom_title"
+        app:layout_constraintLeft_toLeftOf="@+id/note_list_const" />
+
+    <TextView
+        android:id="@+id/custom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/listTitleColor"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/note_list_const"
+        app:layout_constraintTop_toTopOf="@id/custom_text"
+        android:layout_marginBottom="10dp"/>
+
+
+</android.support.constraint.ConstraintLayout>
