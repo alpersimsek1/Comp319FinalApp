@@ -31,5 +31,12 @@
 
     <string name="amount">Harcama Miktari</string>
 
+    <string name="title_location_permission">Lokasyon</string>
+    <string name="text_location_permission">Lokasyona ihtiyacim varrrrr</string>
+    <string name="ok">OK</string>
 
-    </resources>
+    <string name="dailyBudget">Gunluk Harcamalarin</string>
+    <string name="weeklyBudget">Son 7 Gun Harcamalarin</string>
+
+
+</resources>

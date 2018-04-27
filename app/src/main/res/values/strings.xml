@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NOTES-BUDGET-EVENTS</string>
+    <string name="app_name">MyApp</string>
     <string name="eventText">EVENTS</string>
     <string name="notesText">NOTES</string>
     <string name="budgetText">BUDGETS</string>
@@ -41,6 +41,9 @@
     <string name="title_location_permission">Locatioooon</string>
     <string name="text_location_permission">Need location</string>
     <string name="ok">OK</string>
+
+    <string name="dailyBudget">Your daily spendings</string>
+    <string name="weeklyBudget">Your weekly spendings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

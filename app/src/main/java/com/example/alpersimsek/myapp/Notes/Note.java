@@ -9,14 +9,13 @@ import java.util.Map;
 
 public class Note {
 
-    String uid, text, title;
+    String uid, text;
     public Note(){}
 
 
-    public Note(String uid, String title, String text){
+    public Note(String uid, String text){
         this.uid = uid;
         this.text = text;
-        this.title = title;
 
 
     }
@@ -24,7 +23,6 @@ public class Note {
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
-        result.put("title",title);
         result.put("text", text);
 
         return result;
@@ -45,12 +43,6 @@ public class Note {
     public void setText(String text) {
         this.text = text;
     }
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
 }

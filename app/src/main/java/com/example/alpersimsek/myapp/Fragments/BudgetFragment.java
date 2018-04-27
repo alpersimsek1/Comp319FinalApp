@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.alpersimsek.myapp.Adapters.BudgetAdapter;
+import com.example.alpersimsek.myapp.Budget.Budget;
 import com.example.alpersimsek.myapp.BudgetActivity;
+import com.example.alpersimsek.myapp.HowManyDays.Event;
 import com.example.alpersimsek.myapp.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.alpersimsek.myapp.MainActivity.USERID;
 
@@ -37,14 +53,16 @@ public class BudgetFragment extends Fragment {
 
     String uid;
     LocationManager locationManager;
-    TextView locationView;
+    TextView locationView, weeklyView, dailyView;
     Button budgetButton;
-    String provider;
-
-    Location lastknownLocation;
-
-    DatabaseReference mDatabase;
-
+    DatabaseReference mDatabase, childData;
+    ListView budgetList;
+    String locationText;
+    Double locx, locy;
+    Double total;
+    EditText title, amount;
+    ArrayList<Budget> budgets;
+    BudgetAdapter adapter;
     public BudgetFragment() {
         // Required empty public constructor
     }
@@ -55,16 +73,30 @@ public class BudgetFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_budget, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        budgetList = view.findViewById(R.id.budgetList2);
+        title = view.findViewById(R.id.newBudgetText);
+        amount = view.findViewById(R.id.newBudgetAmount);
+        weeklyView = view.findViewById(R.id.weeklyBudget);
+        dailyView = view.findViewById(R.id.dailyBudget);
         Bundle args = getArguments();
         uid = args.getString("uid");
+        budgets = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        childData = mDatabase.child("budgets").child(uid);
 
         locationView = view.findViewById(R.id.locationViewBudget);
         budgetButton = view.findViewById(R.id.newBudgetButton);
 
+        childData.addChildEventListener(childEventListener);
         checkLocationPermission();
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
+        locx = 0.0 ;
+        locy = 0.0 ;
+
+        adapter = new BudgetAdapter(budgets, this.getContext());
+
+        budgetList.setAdapter(adapter);
 
         budgetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +109,49 @@ public class BudgetFragment extends Fragment {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
+//                Toast.makeText(getContext(),"hi there",Toast.LENGTH_LONG).show();
 
                 String locationProvider = LocationManager.GPS_PROVIDER;
-                locationManager.requestLocationUpdates(locationProvider,1,0,locationListener);
+                locationManager.requestLocationUpdates(locationProvider,0,0,locationListener);
+                writeNewBudget(uid, title.getText().toString(),DateTime.now().plusDays(-5).toString(),Double.parseDouble(amount.getText().toString()),locx,locy);
+//                locationView.setText(locationText);
+
             }
         });
 
         return view;
     }
+    ChildEventListener childEventListener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            Budget budget = dataSnapshot.getValue(Budget.class);
+            budgets.add(budget);
+            adapter.notifyDataSetChanged();
+            weeklyView.setText("Your weekly Spendings: "+lastSomeAmountOfDay(budgets,7));
+            dailyView.setText("Your daily Spendings: "+lastSomeAmountOfDay(budgets,1));
+
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
     public static BudgetFragment newinstance(String uid){
         BudgetFragment f = new BudgetFragment();
         Bundle args = new Bundle();
@@ -93,27 +160,30 @@ public class BudgetFragment extends Fragment {
         return f;    }
 
 
-
-    private final LocationListener locationListener = new LocationListener() {
+    final LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            String locationText = location.getLatitude() + " , " + location.getAltitude();
+            locationText = location.getLatitude() + " , " + location.getAltitude();
+            locx = location.getAltitude();
+            locy = location.getLatitude();
             locationView.setText(locationText);
+            Toast.makeText(getContext(),locationText,Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onStatusChanged(String s, int i, Bundle bundle) {
-
+            Toast.makeText(getContext(),
+                    "onStatusChanged",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderEnabled(String s) {
-
+            Toast.makeText(getContext(),"onProviderEnabled",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderDisabled(String s) {
-
+            Toast.makeText(getContext(),"onStatusChanged",Toast.LENGTH_LONG).show();
         }
     };
 
@@ -136,9 +206,6 @@ public class BudgetFragment extends Fragment {
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.title_location_permission)
                         .setMessage(R.string.text_location_permission)
@@ -164,6 +231,33 @@ public class BudgetFragment extends Fragment {
         } else {
             return true;
         }
+    }
+
+    private void writeNewBudget(String uid, String title, String date, Double amount, Double xloc, Double yloc){
+        String key = mDatabase.child("budgets").child(uid).push().getKey();
+        Budget budget = new Budget(uid,date,amount, title, xloc,yloc);
+        Map<String, Object> postValues = budget.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/budgets/"+uid+'/' + key, postValues);
+
+        mDatabase.updateChildren(childUpdates);
+
+    }
+
+    public String lastSomeAmountOfDay(ArrayList<Budget> list, int day){
+        Double total = 0.0;
+        DateTime today = DateTime.now();
+        for(int i = 0; i < list.size(); i++){
+            Budget budget = list.get(i);
+            DateTime budgetDate = DateTime.parse(budget.getDay());
+            int days = Days.daysBetween(budgetDate, today).getDays();
+            Log.d("",String.valueOf(days));
+            if(days < day){
+                total += budget.getAmount();
+            }
+        }
+        return String.valueOf(total);
+
     }
 
 }

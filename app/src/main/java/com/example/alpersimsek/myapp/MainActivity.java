@@ -1,10 +1,12 @@
 package com.example.alpersimsek.myapp;
 
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         selected = EventFragment.newinstance(dummyUser.getUid());
                         break;
                     case R.id.action_run:
-                        selected = RunFragment.newinstance();
+                        selected = RunFragment.newinstance(dummyUser.getUid());
                         break;
                 }
                 fragmentTransaction.replace(R.id.mainFragment, selected);
@@ -111,5 +113,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void eventToDB(View view) {
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 99: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                    }
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+
+                }
+                return;
+            }
+
+        }
     }
 }

@@ -12,33 +12,64 @@
         android:id="@id/eventConstraint">
 
 
+        <TextView
+            android:id="@+id/NewEventTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Event: "
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            app:layout_constraintLeft_toRightOf="@id/eventFragmentText"
+            tools:layout_editor_absoluteY="16dp"
+            tools:ignore="MissingConstraints" />
+
         <EditText
             android:id="@+id/eventFragmentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:text="@string/addevent"
             app:layout_constraintBottom_toTopOf="@id/dateText"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
-            android:text="@string/addevent" />
+            app:layout_constraintRight_toLeftOf="@+id/NewEventTextView"
+            app:layout_constraintStart_toEndOf="@+id/NewEventTextView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="58dp"
+            app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
+            app:layout_constraintLeft_toRightOf="@id/eventFragmentText"
+
+            />
 
         <EditText
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="248dp"
+            android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="date"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="40dp"
             app:layout_constraintBottom_toTopOf="@id/eventFragmentButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
-            />
+            app:layout_constraintStart_toEndOf="@+id/textView2" />
 
         <Button
             android:id="@+id/eventFragmentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/eventsList2"
+            android:textColor="@color/buttonTextcollor"
+            android:theme="@style/MyButton"
             app:layout_constraintLeft_toLeftOf="@+id/eventConstraint"
             android:text="@string/ADD" />
 

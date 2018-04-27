@@ -48,10 +48,9 @@ public class NoteAdapter extends ArrayAdapter<Note> implements View.OnClickListe
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.note_list, parent, false);
 
         }
-        TextView title =  convertView.findViewById(R.id.custom_title);
-        TextView text =  convertView.findViewById(R.id.custom_text);
+//        TextView title =  convertView.findViewById(R.id.custom_title);
+        TextView text =  convertView.findViewById(R.id.custom_title);
 
-        title.setText(note.getTitle());
         text.setText(note.getText());
 
         return convertView;

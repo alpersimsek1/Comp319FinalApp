@@ -18,7 +18,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/amount"
+            app:layout_constraintBottom_toTopOf="@id/newBudgetAmount"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+
+        <EditText
+            android:id="@+id/newBudgetAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
             app:layout_constraintBottom_toTopOf="@id/locationViewBudget"
             app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
 
@@ -36,17 +44,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ADD"
-            app:layout_constraintBottom_toTopOf="@id/budgetText"
+            android:textColor="@color/buttonTextcollor"
+            android:theme="@style/MyButton"
+            app:layout_constraintBottom_toTopOf="@id/dailyBudget"
             app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
 
+
         <TextView
-            android:id="@+id/budgetText"
+            android:id="@+id/dailyBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="@string/budgetText"
+            android:text="@string/dailyBudget"
+            app:layout_constraintBottom_toTopOf="@id/weeklyBudget"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
+
+        <TextView
+            android:id="@+id/weeklyBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/weeklyBudget"
             app:layout_constraintBottom_toTopOf="@id/budgetList2"
             app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
 
@@ -57,7 +79,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            app:layout_constraintBottom_toTopOf="@+id/budgetText"
+            app:layout_constraintBottom_toBottomOf="@id/weeklyBudget"
             app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
 
 

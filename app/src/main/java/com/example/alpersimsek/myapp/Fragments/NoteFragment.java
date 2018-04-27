@@ -1,6 +1,10 @@
 package com.example.alpersimsek.myapp.Fragments;
 
-
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
@@ -25,28 +29,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.SENSOR_SERVICE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NoteFragment extends Fragment {
+public class NoteFragment extends Fragment implements SensorEventListener {
 
     private ArrayList<Note> notes;
+
+    private SensorManager sensorManager;
+    private Sensor senAccelerometer;
 
     NoteAdapter noteAdapter;
     DatabaseReference mDatabase, childData;
     EditText text;
     String uid;
+    long lastUpdate;
+    Note note;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_note, container, false);
 
+        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
+        senAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
+
         Button button = view.findViewById(R.id.fragmentNoteButton);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
+        lastUpdate = System.currentTimeMillis();
         text = view.findViewById(R.id.fragmentNoteText);
 
         ListView noteList = view.findViewById(R.id.fragmentNoteList);
@@ -66,12 +81,20 @@ public class NoteFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Note note = new Note(uid,text.getText().toString(),"FragmentTest");
+                Note note = new Note(uid,text.getText().toString());
                 writeNewNote(note);
             }
         });
+
         return view;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
 
     public static NoteFragment newinstance(String uid){
         NoteFragment f = new NoteFragment();
@@ -129,5 +152,37 @@ public class NoteFragment extends Fragment {
             list.add(value);
         }
         return list;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            getAccelerometer(sensorEvent);
+        }
+    }
+
+    private void getAccelerometer(SensorEvent event) {
+        float[] values = event.values;
+        // Movement
+        float x = values[0];
+        float y = values[1];
+        float z = values[2];
+
+        float accelationSquareRoot = (x * x + y * y + z * z)
+                / (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
+        long actualTime = event.timestamp;
+        if (accelationSquareRoot >= 10) //
+        {
+            if (actualTime - lastUpdate < 200) {
+                return;
+            }
+            lastUpdate = actualTime;
+            note = new Note(uid, text.getText().toString());
+            writeNewNote(note);
+        }
+    }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }

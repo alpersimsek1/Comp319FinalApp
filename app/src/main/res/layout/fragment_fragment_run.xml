@@ -13,24 +13,6 @@
 
 
         <EditText
-            android:id="@+id/newRunFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/from"
-            app:layout_constraintBottom_toTopOf="@id/newRunTo"
-            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
-        <EditText
-            android:id="@+id/newRunTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/to"
-            app:layout_constraintBottom_toTopOf="@id/newRunDate"
-            app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
-        <EditText
             android:id="@+id/newRunDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:text="@string/length"
             app:layout_constraintBottom_toTopOf="@id/button"
             app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
@@ -55,6 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ADD"
+            android:textColor="@color/buttonTextcollor"
+            android:theme="@style/MyButton"
             app:layout_constraintBottom_toTopOf="@id/runText"
             app:layout_constraintLeft_toLeftOf="@+id/runConstraint"/>
 
