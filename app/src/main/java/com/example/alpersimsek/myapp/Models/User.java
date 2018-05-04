@@ -1,4 +1,4 @@
-package com.example.alpersimsek.myapp.Login;
+package com.example.alpersimsek.myapp.Models;
 
 /**
  * Created by alpersimsek on 15.04.2018.

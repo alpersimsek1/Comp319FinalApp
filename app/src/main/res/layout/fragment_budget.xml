@@ -1,16 +1,25 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.alpersimsek.myapp.Fragments.BudgetFragment">
+
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
+        android:id="@id/budgetConstraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@id/budgetConstraint">
+        android:layout_height="wrap_content">
 
+        <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calendarView"
+            app:layout_constraintBottom_toTopOf="@id/newBudgetText"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
+            >
+        </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
 
         <EditText
             android:id="@+id/newBudgetText"
@@ -18,17 +27,22 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@id/newBudgetAmount"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+            app:layout_constraintBottom_toTopOf="@id/locationViewBudget"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
 
         <EditText
             android:id="@+id/newBudgetAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="numberDecimal"
             app:layout_constraintBottom_toTopOf="@id/locationViewBudget"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
+            app:layout_constraintStart_toEndOf="@+id/newBudgetText" />
+
+
+
 
         <TextView
             android:id="@+id/locationViewBudget"
@@ -36,8 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Location"
             app:layout_constraintBottom_toTopOf="@id/newBudgetButton"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
-            />
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
 
         <Button
             android:id="@+id/newBudgetButton"
@@ -46,41 +59,51 @@
             android:text="@string/ADD"
             android:textColor="@color/buttonTextcollor"
             android:theme="@style/MyButton"
-            app:layout_constraintBottom_toTopOf="@id/dailyBudget"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+            app:layout_constraintBottom_toTopOf="@id/showOnMap"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
 
 
         <TextView
             android:id="@+id/dailyBudget"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:text="@string/dailyBudget"
             app:layout_constraintBottom_toTopOf="@id/weeklyBudget"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
+            app:layout_constraintStart_toEndOf="@+id/newBudgetButton" />
 
         <TextView
             android:id="@+id/weeklyBudget"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:text="@string/weeklyBudget"
+            app:layout_constraintBottom_toTopOf="@id/showOnMap"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"
+            app:layout_constraintStart_toEndOf="@+id/newBudgetButton" />
+
+        <Button
+            android:id="@+id/showOnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/showOnMap"
+            android:textColor="@color/buttonTextcollor"
+            android:theme="@style/MyButton"
             app:layout_constraintBottom_toTopOf="@id/budgetList2"
             app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint" />
 
         <ListView
             android:id="@+id/budgetList2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            app:layout_constraintBottom_toBottomOf="@id/weeklyBudget"
-            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint"/>
+            android:layout_width="415dp"
+            android:layout_height="485dp"
+            app:layout_constraintBottom_toBottomOf="@id/showOnMap"
+            app:layout_constraintLeft_toLeftOf="@+id/budgetConstraint">
+
+
+        </ListView>
 
 
 

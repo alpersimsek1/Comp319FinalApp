@@ -1,4 +1,4 @@
-package com.example.alpersimsek.myapp.Budget;
+package com.example.alpersimsek.myapp.Models;
 
 import org.joda.time.DateTime;
 

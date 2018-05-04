@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -25,9 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alpersimsek.myapp.Adapters.BudgetAdapter;
-import com.example.alpersimsek.myapp.Budget.Budget;
-import com.example.alpersimsek.myapp.BudgetActivity;
-import com.example.alpersimsek.myapp.HowManyDays.Event;
+import com.example.alpersimsek.myapp.MapsActivity;
+import com.example.alpersimsek.myapp.Models.Budget;
 import com.example.alpersimsek.myapp.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +39,6 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +53,7 @@ public class BudgetFragment extends Fragment {
     String uid;
     LocationManager locationManager;
     TextView locationView, weeklyView, dailyView;
-    Button budgetButton;
+    Button budgetButton, showOnMap;
     DatabaseReference mDatabase, childData;
     ListView budgetList;
     String locationText;
@@ -86,7 +85,7 @@ public class BudgetFragment extends Fragment {
 
         locationView = view.findViewById(R.id.locationViewBudget);
         budgetButton = view.findViewById(R.id.newBudgetButton);
-
+        showOnMap = view.findViewById(R.id.showOnMap);
         childData.addChildEventListener(childEventListener);
         checkLocationPermission();
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
@@ -112,10 +111,20 @@ public class BudgetFragment extends Fragment {
 //                Toast.makeText(getContext(),"hi there",Toast.LENGTH_LONG).show();
 
                 String locationProvider = LocationManager.GPS_PROVIDER;
-                locationManager.requestLocationUpdates(locationProvider,0,0,locationListener);
-                writeNewBudget(uid, title.getText().toString(),DateTime.now().plusDays(-5).toString(),Double.parseDouble(amount.getText().toString()),locx,locy);
-//                locationView.setText(locationText);
+//                locationManager.requestLocationUpdates(locationProvider,0,0,locationListener);
+                locationManager.requestSingleUpdate(locationProvider,locationListener, Looper.myLooper());
 
+//                locationView.setText(locationText);
+//                locationManager.removeUpdates(locationListener);
+            }
+        });
+
+        showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MapsActivity.class);
+                intent.putExtra(USERID,uid);
+                startActivity(intent);
             }
         });
 
@@ -127,8 +136,8 @@ public class BudgetFragment extends Fragment {
             Budget budget = dataSnapshot.getValue(Budget.class);
             budgets.add(budget);
             adapter.notifyDataSetChanged();
-            weeklyView.setText("Your weekly Spendings: "+lastSomeAmountOfDay(budgets,7));
-            dailyView.setText("Your daily Spendings: "+lastSomeAmountOfDay(budgets,1));
+            weeklyView.setText(getResources().getString(R.string.weeklyBudget)+": "+lastSomeAmountOfDay(budgets,7));
+            dailyView.setText(getResources().getString(R.string.dailyBudget)+": "+lastSomeAmountOfDay(budgets,1));
 
         }
 
@@ -139,7 +148,9 @@ public class BudgetFragment extends Fragment {
 
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+            Budget budget = dataSnapshot.getValue(Budget.class);
+            budgets.remove(budget);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
@@ -163,27 +174,23 @@ public class BudgetFragment extends Fragment {
     final LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            locationText = location.getLatitude() + " , " + location.getAltitude();
-            locx = location.getAltitude();
-            locy = location.getLatitude();
+            locx = location.getLatitude();
+            locy = location.getLongitude();
+            locationText = locx + " , " + locy;
+            writeNewBudget(uid, title.getText().toString(),DateTime.now().toString(),Double.parseDouble(amount.getText().toString()),locx,locy);
             locationView.setText(locationText);
-            Toast.makeText(getContext(),locationText,Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onStatusChanged(String s, int i, Bundle bundle) {
-            Toast.makeText(getContext(),
-                    "onStatusChanged",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderEnabled(String s) {
-            Toast.makeText(getContext(),"onProviderEnabled",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderDisabled(String s) {
-            Toast.makeText(getContext(),"onStatusChanged",Toast.LENGTH_LONG).show();
         }
     };
 
@@ -260,4 +267,14 @@ public class BudgetFragment extends Fragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+//        locationManager.removeUpdates(locationListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

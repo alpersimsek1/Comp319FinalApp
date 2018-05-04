@@ -25,12 +25,13 @@
     <string name="verifyEmail">Verify</string>
 
     <string name="addnote">Add new note</string>
-    <string name="addevent">Add new event</string>
+    <string name="addevent">Event Title</string>
     <string name="addbudget">New spending</string>
     <string name="addrun">Add new Run</string>
 
 
     <string name="ADD">Add</string>
+    <string name="showOnMap">Show On Map</string>
 
     <string name="from">from</string>
     <string name="to">to</string>
@@ -47,6 +48,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

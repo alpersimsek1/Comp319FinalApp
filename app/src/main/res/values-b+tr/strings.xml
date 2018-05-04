@@ -17,12 +17,13 @@
     <string name="verifyEmail">Etkinlestir</string>
 
     <string name="addnote">Yeni not ekle</string>
-    <string name="addevent">Yeni etkinlik ekle</string>
+    <string name="addevent">Etkinlik Ismi</string>
     <string name="addbudget">Yeni harcama</string>
     <string name="addrun">Yeni Kosu</string>
 
 
     <string name="ADD">Ekle</string>
+    <string name="showOnMap">Haritada Goster</string>
 
     <string name="from">nereden</string>
     <string name="to">nereye</string>

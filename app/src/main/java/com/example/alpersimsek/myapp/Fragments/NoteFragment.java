@@ -1,12 +1,10 @@
 package com.example.alpersimsek.myapp.Fragments;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.alpersimsek.myapp.Adapters.NoteAdapter;
-import com.example.alpersimsek.myapp.Notes.Note;
+import com.example.alpersimsek.myapp.Models.Note;
 import com.example.alpersimsek.myapp.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

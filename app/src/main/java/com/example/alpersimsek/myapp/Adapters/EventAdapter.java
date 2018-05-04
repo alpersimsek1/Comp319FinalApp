@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.alpersimsek.myapp.HowManyDays.Event;
-import com.example.alpersimsek.myapp.Notes.Note;
+import com.example.alpersimsek.myapp.Models.Event;
 import com.example.alpersimsek.myapp.R;
 
 import java.util.ArrayList;

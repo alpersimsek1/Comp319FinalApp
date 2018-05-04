@@ -1,7 +1,6 @@
 package com.example.alpersimsek.myapp.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.alpersimsek.myapp.Notes.Note;
+import com.example.alpersimsek.myapp.Models.Note;
 import com.example.alpersimsek.myapp.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

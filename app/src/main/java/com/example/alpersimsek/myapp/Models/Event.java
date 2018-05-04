@@ -1,4 +1,4 @@
-package com.example.alpersimsek.myapp.HowManyDays;
+package com.example.alpersimsek.myapp.Models;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -71,8 +71,8 @@ public class Event {
     public String daysLeft(){
         DateTime now = DateTime.now();
         DateTime toEvent = DateTime.parse(date);
-        Duration dur = new Duration(toEvent,now);
-        return dur.toStandardMinutes().toString();
+        Duration dur = new Duration(now,toEvent);
+        return String.valueOf(dur.getStandardDays());
     }
 
 }

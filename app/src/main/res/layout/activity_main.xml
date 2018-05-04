@@ -2,122 +2,29 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alpersimsek.myapp.MainActivity"
-    android:id="@+id/constraint"
-     >
+    tools:context="com.example.alpersimsek.myapp.MainActivity">
 
     <FrameLayout
+        android:id="@+id/mainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainFragment"
         android:layout_above="@+id/bottom_navigation"
-        app:layout_constraintBottom_toTopOf="@id/constraint"
-        >
+        app:layout_constraintBottom_toTopOf="@id/constraint">
 
     </FrameLayout>
-        <!--<TextView-->
-            <!--android:id="@+id/eventTextView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="@string/eventText"-->
-            <!--android:textSize="30sp"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/eventsList"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
 
-        <!--<ListView-->
-            <!--android:id="@+id/eventsList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-
-            <!--android:layout_weight="1"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/notesTextView"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint">-->
-
-        <!--</ListView>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/notesTextView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_weight="1"-->
-
-            <!--android:text="@string/notesText"-->
-            <!--android:textSize="30sp"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/notesList"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
-
-
-        <!--<ListView-->
-            <!--android:id="@+id/notesList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_weight="1"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/budgetTextView"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/budgetTextView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_weight="1"-->
-
-            <!--android:text="@string/budgetText"-->
-            <!--android:textSize="30sp"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/budgetList"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/budgetList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:layout_marginLeft="4dp"-->
-            <!--android:layout_weight="1"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/runTextView"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/runTextView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_weight="1"-->
-
-            <!--android:text="@string/runText"-->
-            <!--android:textSize="30sp"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/budgetList"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint" />-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/runList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:layout_weight="1"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraint"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/runTextView" />-->
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/bottomNavBackground"
         app:itemIconTint="@color/bottomNavTint"
-        app:itemTextColor="@color/grayish"
+        app:itemTextColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -125,8 +32,6 @@
         app:layout_constraintTop_toBottomOf="@+id/mainFragment"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_main" />
-
-
 
 
 </android.support.constraint.ConstraintLayout>

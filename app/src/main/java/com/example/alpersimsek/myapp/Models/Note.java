@@ -1,4 +1,4 @@
-package com.example.alpersimsek.myapp.Notes;
+package com.example.alpersimsek.myapp.Models;
 
 import java.util.HashMap;
 import java.util.Map;
